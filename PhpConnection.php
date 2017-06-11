@@ -39,9 +39,9 @@ if(!$result){
 
 <?php
 // 3. Use returned data (if any)
-    while($row = mysqli_fetch_row($result)){
+    while($row = mysqli_fetch_assoc($result)){
         //output data from each row
-        var_dump($row);
+        echo $row["manu_name"] . "<br/>";
         echo "<hr />";
     }
 
