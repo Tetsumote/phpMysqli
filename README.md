@@ -1,0 +1,1 @@
+## Example of connection to database using mysgli
