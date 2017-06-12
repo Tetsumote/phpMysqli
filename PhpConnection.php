@@ -36,16 +36,11 @@ if(!$result){
 </head>
 <body>
     
-
-<?php
-// 3. Use returned data (if any)
-    while($row = mysqli_fetch_assoc($result)){
-        //output data from each row
-        echo $row["manu_name"] . "<br/>";
-        echo "<hr />";
-    }
-
-?>
+<ul>
+<?php   while($row = mysqli_fetch_assoc($result)){ ?>
+    <li><?php echo $row["manu_name"];?></li>
+<?php } ?>
+</ul>
 <?php
 // 4.Release returned data
 mysqli_free_result($result);
