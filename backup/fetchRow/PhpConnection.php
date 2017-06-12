@@ -11,36 +11,19 @@ if(mysqli_connect_errno()){
     mysqli_connect_error() .
     " (" . mysqli_connect_errno() . ")"
     );
-}else{
-    echo "success!";
 }
 ?>
 <?php
-
-$manu_name = "Edit me";
-$position = 4;
-$visible = 1;
-
-//  $query = "INSERT INTO subjects (manu_name,position,visible)
-//  VALUES ('{$manu_name}',{$position},{$visible})";
-
-$query = "INSERT INTO subjects (";
-$query .= " manu_name, position, visible";
-$query .= ") VALUES (";
-$query .= " '{$manu_name}', {$position}, {$visible}";
-$query .= ")";
-
+// 2.Perform database query
+// $query = "SELECT * FROM subjects";
+$query = "SELECT * ";
+$query .= "FROM subjects ";
+$query .= "WHERE visible = 1 ";
+$query .= "ORDER BY position ASC";
 $result = mysqli_query($connection,$query);
-
 // Test if there was a query error
-if($result){
-    //success
-    //redirect_to("somepage.php");
-    echo "Success!";
-}else{
-    //Failure
-    //$message = "Subject creation failed";
-    die("Database query failed. " . mysqli_error($connection));
+if(!$result){
+    die("Database query failed.");
 }
 ?>
 <!DOCTYPE html>
@@ -52,6 +35,16 @@ if($result){
     <title>Php connection</title>
 </head>
 <body>
+    
+<ul>
+<?php   while($subject = mysqli_fetch_assoc($result)){ ?>
+    <li><?php echo $subject["manu_name"];?></li>
+<?php } ?>
+</ul>
+<?php
+// 4.Release returned data
+mysqli_free_result($result);
+?>
 
 </body>
 </html>
