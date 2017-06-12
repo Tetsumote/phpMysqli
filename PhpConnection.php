@@ -16,19 +16,17 @@ if(mysqli_connect_errno()){
 }
 ?>
 <?php
-
-$manu_name = "Edit me";
+$id = 8;
+$manu_name = "Edit";
 $position = 4;
 $visible = 1;
 
-//  $query = "INSERT INTO subjects (manu_name,position,visible)
-//  VALUES ('{$manu_name}',{$position},{$visible})";
 
-$query = "INSERT INTO subjects (";
-$query .= " manu_name, position, visible";
-$query .= ") VALUES (";
-$query .= " '{$manu_name}', {$position}, {$visible}";
-$query .= ")";
+$query = "UPDATE subjects SET ";
+$query .= "manu_name = '{$manu_name}', ";
+$query .= "position = {$position}, ";
+$query .= "visible = {$visible} ";
+$query .= "WHERE id = {$id}";
 
 $result = mysqli_query($connection,$query);
 
