@@ -14,19 +14,23 @@ if(mysqli_connect_errno()){
 }else{
     echo "success!";
 }
-?>
+?>  
 <?php
-$id = 8;
-$manu_name = "Edit";
-$position = 4;
-$visible = 1;
+$manu_name = "Today's Widget Trivia";
+$position = (int) 4;
+$visible = (int) 1;
+
+$manu_name = mysqli_real_escape_string($connection,$manu_name);
 
 
-$query = "UPDATE subjects SET ";
-$query .= "manu_name = '{$manu_name}', ";
-$query .= "position = {$position}, ";
-$query .= "visible = {$visible} ";
-$query .= "WHERE id = {$id}";
+
+$query = "INSERT INTO subjects (";
+$query .= " manu_name, position, visible";
+$query .= ") VALUES (";
+$query .= " '{$manu_name}',{$position},{$visible}";
+$query .= ")";
+
+echo $query;
 
 $result = mysqli_query($connection,$query);
 
@@ -50,7 +54,7 @@ if($result){
     <title>Php connection</title>
 </head>
 <body>
-
+<div>This is PHP example</div>
 </body>
 </html>
 <?php
